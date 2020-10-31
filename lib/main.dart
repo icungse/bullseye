@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:Bullseye/prompt.dart';
+import 'package:Bullseye/control.dart';
 
 void main() => runApp(BullsEyeApp());
 
@@ -36,11 +38,8 @@ class _GamePageState extends State<GamePage> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            Text(
-              "Hello BullsEye",
-              style:
-                  TextStyle(fontWeight: FontWeight.bold, color: Colors.green),
-            ),
+            Prompt(targetValue: 100),
+            Control(),
             FlatButton(
               child: Text(
                 'Hit Me',

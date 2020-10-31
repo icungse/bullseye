@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:Bullseye/prompt.dart';
 import 'package:Bullseye/control.dart';
 import 'package:Bullseye/score.dart';
+import 'package:Bullseye/gamemodel.dart';
 
 void main() => runApp(BullsEyeApp());
 
@@ -31,6 +32,13 @@ class GamePage extends StatefulWidget {
 
 class _GamePageState extends State<GamePage> {
   bool _alertIsVisible = false;
+  GameModel _model;
+
+  @override
+  void initState() {
+    super.initState();
+    _model = GameModel(50);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -40,7 +48,9 @@ class _GamePageState extends State<GamePage> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             Prompt(targetValue: 100),
-            Control(),
+            Control(
+              model: _model,
+            ),
             FlatButton(
               child: Text(
                 'Hit Me',
@@ -52,7 +62,7 @@ class _GamePageState extends State<GamePage> {
                 print("Button clicked!");
               },
             ),
-            Score(totalScore: 999, round: 999),
+            Score(totalScore: _model.totalScore, round: _model.totalScore),
           ],
         ),
       ),

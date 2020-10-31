@@ -24,10 +24,24 @@ class _ScoreState extends State<Score> {
           child: Text('Start Over'),
           onPressed: () {},
         ),
-        Text("Score:"),
-        Text("999"),
-        Text("Round"),
-        Text("9999"),
+        Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Row(
+            children: [
+              Text("Score:"),
+              Text("999"),
+            ],
+          ),
+        ),
+        Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Row(
+            children: [
+              Text("Round"),
+              Text("9999"),
+            ],
+          ),
+        ),
         FlatButton(
           child: Text('Info'),
           onPressed: () {},

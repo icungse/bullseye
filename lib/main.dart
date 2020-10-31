@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:Bullseye/prompt.dart';
 import 'package:Bullseye/control.dart';
+import 'package:Bullseye/score.dart';
 
 void main() => runApp(BullsEyeApp());
 
@@ -50,7 +51,8 @@ class _GamePageState extends State<GamePage> {
                 _showAler(context);
                 print("Button clicked!");
               },
-            )
+            ),
+            Score(totalScore: 999, round: 999),
           ],
         ),
       ),

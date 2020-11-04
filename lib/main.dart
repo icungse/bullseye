@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'dart:math';
 import 'package:flutter/services.dart';
 import 'package:Bullseye/prompt.dart';
 import 'package:Bullseye/control.dart';
@@ -37,7 +38,7 @@ class _GamePageState extends State<GamePage> {
   @override
   void initState() {
     super.initState();
-    _model = GameModel(50);
+    _model = GameModel(Random().nextInt(100) + 1);
   }
 
   @override
@@ -47,7 +48,7 @@ class _GamePageState extends State<GamePage> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            Prompt(targetValue: 100),
+            Prompt(targetValue: _model.target),
             Control(
               model: _model,
             ),
@@ -69,6 +70,16 @@ class _GamePageState extends State<GamePage> {
     );
   }
 
+  int _pointsForCurrentRound() {
+    int maximumScore = 100;
+    int sliderValue = _model.current;
+    int difference = _model.target - sliderValue;
+    if (difference < 0) {
+      difference *= -1;
+    }
+    return maximumScore - difference;
+  }
+
   void _showAler(BuildContext context) {
     Widget okButton = FlatButton(
       child: Text("Awesome"),
@@ -82,8 +93,9 @@ class _GamePageState extends State<GamePage> {
         context: context,
         builder: (BuildContext context) {
           return AlertDialog(
-            title: Text("Hello ther"),
-            content: Text("This is my first pop-up"),
+            title: Text("Hello there"),
+            content: Text("The slider's value is ${_model.current}. \n" +
+                "You scored ${_pointsForCurrentRound()} pints this round."),
             actions: <Widget>[okButton],
             elevation: 5,
           );
